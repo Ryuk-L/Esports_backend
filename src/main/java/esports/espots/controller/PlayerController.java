@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
+@CrossOrigin(origins ="*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/player")
@@ -45,6 +45,22 @@ public class PlayerController {
 
 
     }
+    @GetMapping("/{playerId}/checkBan")
+    public ResponseEntity<Boolean> checkPlayerBan(@PathVariable Integer playerId) {
+        boolean isBanned = playerService.isPlayerBanned(playerId);
+        return ResponseEntity.ok(isBanned);
+    }
+
+    @PutMapping("/{playerId}/banForever")
+    public ResponseEntity<String> banPlayerForever(@PathVariable Integer playerId) {
+        boolean success = playerService.banPlayerForever(playerId);
+        if (success) {
+            return ResponseEntity.ok("Player banned forever successfully.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
 

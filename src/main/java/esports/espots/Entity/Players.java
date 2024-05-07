@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,8 +21,9 @@ public class Players {
     private String email;
     private String password;
     private Integer token;
-    private Date date_ban;
-    private Date date_remove_ban;
+    private LocalDate date_ban;
+    private LocalDate date_remove_ban;
+    private Boolean ban_forever;
 
 
 
@@ -32,9 +34,7 @@ public class Players {
         this.password = password;
         this.token = 0;
         this.date_ban = null;
-        this.date_remove_ban=null
-        ;
-
-
+        this.date_remove_ban=null;
+        this.ban_forever=false;
     }
 }

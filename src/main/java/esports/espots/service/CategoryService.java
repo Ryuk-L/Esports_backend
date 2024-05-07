@@ -11,6 +11,7 @@ import java.util.Optional;
 @Service
 public class CategoryService {
 
+
     @Autowired
     private CategoryRepository categoryRepository;
 
@@ -22,12 +23,14 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
-    public Category getCategoryById(Integer id) {
+    public  Category getCategoryById(Integer id) {
         Optional<Category> categoryOptional = categoryRepository.findById(id);
-        return categoryOptional.orElse(null); // Returns null if category not found
+        return categoryOptional.orElse(null);
     }
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
+
+
 }

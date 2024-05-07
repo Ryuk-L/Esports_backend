@@ -1,6 +1,8 @@
 package esports.espots.controller;
 
+import esports.espots.Entity.Category;
 import esports.espots.Entity.Games;
+import esports.espots.service.CategoryService;
 import esports.espots.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin(origins ="*")
 @RestController
 @RequestMapping("/api/games")
 public class GameController {
-
+    @Autowired
     private final GameService gameService;
 
     @Autowired
@@ -44,4 +46,17 @@ public class GameController {
         gameService.deleteGame(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<Games>> getAllGamesByCategory(@PathVariable Integer categoryId) {
+        List<Games> games = gameService.getAllGamesByCategoryId(categoryId);
+        if (games.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(games);
+        }
+    }
+
+
+
+
 }

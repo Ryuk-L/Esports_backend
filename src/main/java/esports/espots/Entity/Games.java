@@ -19,7 +19,6 @@ public class Games {
     private String image;
     @ManyToOne
     private Category category;
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy="games")
-    //private Set<Events> events;
+
 
 }

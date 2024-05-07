@@ -23,6 +23,7 @@ public class GameService {
         return gameRepository.findAll();
     }
 
+
     public Optional<Games> getGameById(Integer id) {
         return gameRepository.findById(id);
     }
@@ -34,4 +35,12 @@ public class GameService {
     public void deleteGame(Integer id) {
         gameRepository.deleteById(id);
     }
+
+    public List<Games> getAllGamesByCategoryId(Integer categoryId) {
+        return gameRepository.findAllByCategory_IdCategory(categoryId);
+    }
+
+
+
+
 }

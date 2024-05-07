@@ -33,7 +33,7 @@ public class StoreService {
 
     public Store updateStore(Integer id, Store store) {
         if (storeRepository.existsById(id)) {
-            store.setIdGame(id);
+            store.setIdStore(id);
             return storeRepository.save(store);
         } else {
             throw new StoreNotFoundException("Store with ID " + id + " not found");

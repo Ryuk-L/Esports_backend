@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer idGame;
+    private  Integer idStore;
     private  String name;
     private  String description;
     private String image;

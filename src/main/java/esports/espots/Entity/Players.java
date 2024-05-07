@@ -1,9 +1,6 @@
 package esports.espots.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +22,7 @@ public class Players {
     private Integer token;
     private Date date_ban;
     private Date date_remove_ban;
+
 
 
     public Players(Integer id_player, String username, String email, String password ) {

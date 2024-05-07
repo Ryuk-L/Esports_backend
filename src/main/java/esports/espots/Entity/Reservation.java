@@ -5,21 +5,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.Date;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"id_player", "idEvent"}))
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Games {
+public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer idGame;
-    private  String name;
-    private String image;
-    @ManyToOne
-    private Category category;
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy="games")
-    //private Set<Events> events;
+    private Integer id;
+    private Date reservationDate;
 
+    @ManyToOne
+    private Players player;
+
+    @ManyToOne
+    private Events event;
 }

@@ -5,21 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Games {
+public class Events {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer idGame;
+    private  Integer idEvent;
     private  String name;
-    private String image;
+    private  Integer reward;
+    private  String location;
+    private  Date date_start;
+    private  Date date_end;
+    private  Integer places;
     @ManyToOne
-    private Category category;
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy="games")
-    //private Set<Events> events;
+    private  Games games;
 
 }

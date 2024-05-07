@@ -1,25 +1,25 @@
 package esports.espots.Entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Games {
+public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Integer idGame;
     private  String name;
+    private  String description;
     private String image;
-    @ManyToOne
-    private Category category;
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy="games")
-    //private Set<Events> events;
+    private Integer price;
+
 
 }

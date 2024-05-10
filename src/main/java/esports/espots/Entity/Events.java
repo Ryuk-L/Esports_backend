@@ -22,6 +22,7 @@ public class Events {
     private  Date date_start;
     private  Date date_end;
     private  Integer places;
+    private  String image;
     @ManyToOne
     private  Games games;
 

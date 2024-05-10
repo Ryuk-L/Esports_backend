@@ -1,5 +1,8 @@
 package esports.espots.controller;
 
+import esports.espots.Entity.Events;
+import esports.espots.Entity.Games;
+import esports.espots.Entity.Players;
 import esports.espots.Entity.Reservation;
 import esports.espots.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @CrossOrigin(origins ="*")
@@ -45,5 +49,20 @@ public class ReservationController {
     public ResponseEntity<Void> deleteReservation(@PathVariable("id") Integer id) {
         reservationService.deleteReservation(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/Event/{eventId}")
+    public ResponseEntity<List<Players>> getAllReservationsByEvent(@PathVariable Integer eventId) {
+        List<Reservation> reservations = reservationService.getAllReservationsByEvent(eventId);
+        List<Players> players = new ArrayList<>();
+
+        for (Reservation reservation : reservations) {
+            players.add(reservation.getPlayer());
+        }
+
+        if (players.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(players, HttpStatus.OK);
     }
 }

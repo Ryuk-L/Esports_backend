@@ -1,6 +1,7 @@
 package esports.espots.service;
 
 import esports.espots.Entity.Events;
+import esports.espots.Entity.Games;
 import esports.espots.Entity.Reservation;
 import esports.espots.respository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,9 @@ public class ReservationService {
 
     public void deleteReservation(Integer id) {
         reservationRepository.deleteById(id);
+    }
+
+    public List<Reservation> getAllReservationsByEvent(Integer eventId) {
+        return reservationRepository.findByEvent_IdEvent(eventId);
     }
 }

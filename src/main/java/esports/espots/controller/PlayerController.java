@@ -62,7 +62,43 @@ public class PlayerController {
     }
 
 
+    @PostMapping("/rate/{playerId}/{star}")
+    public ResponseEntity<String> ratePlayer(@PathVariable Integer playerId, @PathVariable Integer star) {
+        // Retrieve the player by ID
+        Players player = playerService.SgetPlayer(playerId);
 
+        if (player == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Player not found");
+        }
+        // Update token based on star rating
+        int tokenAdjustment = 0;
+        switch (star) {
+            case 1:
+                tokenAdjustment = -50;
+                break;
+            case 2:
+                tokenAdjustment = 0;
+                break;
+            case 3:
+                tokenAdjustment = 10;
+                break;
+            case 4:
+                tokenAdjustment = 50;
+                break;
+            case 5:
+                tokenAdjustment = 100;
+                break;
+            default:
+                return ResponseEntity.badRequest().body("Invalid star rating");
+        }     System.out.println(tokenAdjustment);
+
+        // Update player's token
+        player.setToken(player.getToken() + tokenAdjustment);
+        System.out.println(player);
+        playerService.addPlayer(player);
+
+        return ResponseEntity.ok("Rating submitted successfully");
+    }
 
 
 

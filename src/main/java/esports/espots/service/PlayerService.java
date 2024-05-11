@@ -23,7 +23,6 @@ public class PlayerService {
     }
 
     public Players addPlayer(@RequestBody Players player) {
-        player.setToken(0);
         playersRepository.save(player);
         return player;
     }
@@ -64,4 +63,6 @@ public class PlayerService {
         }
         return false;
     }
+
+
 }

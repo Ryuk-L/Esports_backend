@@ -7,19 +7,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class post {
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"id_player", "id_post"}))
+public class Participation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_post;
-    private Integer nb_team;
+    private Integer id_participation;
     @ManyToOne
-    private  Games games;
+    private Players player;
     @ManyToOne
-    private Players Team;
-    @ManyToOne
-    private Players owner;
-
-
-
+    private Posts post;
 
 }

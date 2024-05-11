@@ -23,7 +23,6 @@ public class PostsController {
     public ResponseEntity<Posts> addPost(@RequestBody Posts post) {
         return ResponseEntity.status(HttpStatus.CREATED).body(postsService.addPost(post));
     }
-
     // Read operation - Find post by id
     @GetMapping("/{id}")
     public ResponseEntity<Posts> findPostById(@PathVariable("id") Integer id) {

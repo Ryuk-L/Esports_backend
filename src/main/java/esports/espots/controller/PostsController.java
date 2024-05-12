@@ -2,6 +2,7 @@ package esports.espots.controller;
 
 import esports.espots.Entity.Players;
 import esports.espots.Entity.Posts;
+import esports.espots.service.ParticipationService;
 import esports.espots.service.PostsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,12 @@ public class PostsController {
 
     @Autowired
     private PostsService postsService;
+    private final ParticipationService participationService;
+
+    @Autowired
+    public PostsController(ParticipationService participationService) {
+        this.participationService = participationService;
+    }
 
     // Create operation
     @PostMapping("/add")
@@ -42,7 +49,10 @@ public class PostsController {
         Posts modifiedPost = postsService.modifyPost(id, updatedPost);
         return ResponseEntity.ok().body(modifiedPost);
     }
-
+    @GetMapping("/{postId}/players")
+    public List<Players> getPlayersByPostId(@PathVariable Integer postId) {
+        return participationService.findPlayersByPostId(postId);
+    }
 
     // Delete operation
     @DeleteMapping("/delete/{id}")

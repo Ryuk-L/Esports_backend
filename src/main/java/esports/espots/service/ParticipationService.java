@@ -1,12 +1,14 @@
 package esports.espots.service;
 
 import esports.espots.Entity.Participation;
+import esports.espots.Entity.Players;
 import esports.espots.Entity.Posts;
 import esports.espots.respository.ParticipationRepository;
 import esports.espots.respository.PostsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,7 +41,9 @@ public class ParticipationService {
             throw new IllegalArgumentException("Posts entity with ID " + idPost + " not found");
         }
     }
-
+    public List<Players> findPlayersByPostId(Integer postId) {
+        return participationRepository.findPlayersByPostId(postId);
+    }
 
    
 }

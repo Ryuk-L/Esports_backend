@@ -17,6 +17,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Integer idCategory;
     private String nameCategory;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="category")
+    @OneToMany(mappedBy="category", cascade = CascadeType.ALL)
     private Set<Games> Games;
 }

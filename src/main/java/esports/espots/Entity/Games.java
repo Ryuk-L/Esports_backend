@@ -14,10 +14,11 @@ import java.util.Set;
 public class Games {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer idGame;
-    private  String name;
+    private Integer idGame;
+    private String name;
     private String image;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
     private Category category;
 
 

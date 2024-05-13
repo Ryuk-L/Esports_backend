@@ -3,6 +3,8 @@ package esports.espots.controller;
 import esports.espots.Entity.Category;
 import esports.espots.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +25,9 @@ public class CategoryController {
     public void deleteCategory(@PathVariable Integer id) {
         categoryService.deleteCategory(id);
     }
+
+
+
 
     @GetMapping("/{id}")
     public Category getCategoryById(@PathVariable Integer id) {
